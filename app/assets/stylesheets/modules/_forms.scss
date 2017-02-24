@@ -1,0 +1,26 @@
+.header-form {
+  width: 70%;
+  float: left;
+  input[type=text] {
+    border: none;
+    font-size: 0.8rem;
+    width: 100%;
+    padding: 1.35rem;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 0.05rem;
+    &::placeholder  {
+      text-transform:uppercase;
+      color: $darkish-grey;
+    }
+    &:before {
+      content: "\f002";
+      font-family: FontAwesome;
+      top: 50%;
+      left: 50%;
+    }
+    &:focus {
+      border:none;
+      outline: none;
+    }
+  }
+}

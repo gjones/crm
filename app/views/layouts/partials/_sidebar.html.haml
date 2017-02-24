@@ -1,0 +1,22 @@
+%sidebar
+  .sidebar-content
+    .logo
+      = fa_icon 'cloud'
+    %ul.page-navigation
+      %li.navigation-item
+        = fa_icon "home"
+        Dashboard
+      %li.navigation-item
+        = link_to contacts_path do
+          = fa_icon "users"
+          //= image_tag('icon-users@2x.png');
+          Contacts #{Contact.all.count}
+      %li.navigation-item
+        = link_to all_tasks_path do
+          = fa_icon "check-square-o"
+          Tasks
+      %li.navigation-item
+        = link_to all_notes_path do
+          = fa_icon "list"
+          Notes
+

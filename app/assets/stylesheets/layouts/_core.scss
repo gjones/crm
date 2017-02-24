@@ -1,0 +1,78 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: $base-font-size;
+  @include border-box-sizing;
+  @include show-grid(overlay);
+}
+
+.container {
+  @include container;
+  display: flex;
+}
+
+.row {
+  @include break;
+}
+
+sidebar {
+  background: $sidebar-colour;
+  @include span(2 of 12);
+  align-items: stretch;
+  @include breakpoint(phone) {
+    display: none;
+  }
+  .sidebar-content {
+    @include span(10 of 12);
+    @include prefix(1 of 12);
+  }
+}
+
+.main-area {
+  @include span(10 of 12);
+  min-height: 45em;
+  background: $background-colour;
+  .content {
+    @include span(12 of 12);
+    @include pad(1/4 of 12);
+  }
+  @include breakpoint(phone) {
+    @include span(12 of 12);
+  }
+}
+
+header {
+  background: $box-colour;
+  @include span(12 of 12);
+  margin-bottom: 2rem;
+}
+
+footer {
+  @include span(12 of 12);
+  @include pad(1 of 12);
+  border-top: 0.1rem solid $light_grey;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.user-navigation {
+  width: 15%;
+  float: right;
+  .avatar {
+    float: left;
+    border-right: 1px $light_grey;
+    padding-right: 1em;
+    i {
+      float: left;
+      padding: 1.2em 0 0 0.5em;
+    }
+  }
+  .notification {
+    float: left;
+    i {
+      color: $gold;
+      padding: 1.2em 0 0 0.5em;
+    }
+  }
+}

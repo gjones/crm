@@ -1,0 +1,10 @@
+= content_for(:title) do
+  = "Editing #{@contact.name}'s record"
+= content_for(:description) do
+  = "Editing #{@contact.name}'s record"
+
+%h1 Editing Contact
+= render 'form', contact: @contact
+= link_to 'Show', @contact
+|
+\#{link_to 'Back', contacts_path}

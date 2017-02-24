@@ -1,0 +1,14 @@
+@mixin breakpoint($point) {
+  @if $point == medium-screens {
+    @media only screen and (max-width : 66em) { @content; }
+  }
+  @else if $point == super-screens {
+    @media only screen and (min-width : 78em) { @content; }
+  }
+  @else if $point == big-screens {
+    @media only screen and (max-width : 78em) { @content; }
+  }
+  @else if $point == phone {
+    @media only screen and (max-width : 47.5em) { @content; }
+  }
+}

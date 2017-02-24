@@ -1,0 +1,28 @@
+= form_for @task, url: contact_tasks_path do |f|
+  - if task.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(task.errors.count, "error")
+        prohibited this task from being saved:
+      %ul
+        - task.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :detail
+    = f.text_area :detail
+  .field
+    = f.label :author
+    = f.text_field :author
+  .field
+    = f.hidden_field :contact_id, :value => params[:contact_id]
+  .field
+    = f.label :completed
+    = f.check_box :completed
+  .field
+    = f.label :start_date
+    = f.date_field :start_date
+  .actions
+    = f.submit

@@ -1,0 +1,52 @@
+@import 'susy';
+@import 'font-awesome';
+
+// Core Colours
+$gold: rgb(132,113,79);
+$navy_blue: rgb(28,30,43);
+$dark_grey: rgb(40,40,40);
+$royal_blue: rgb(28,55,92);
+$light_grey: rgb(247,247,247);
+$white: rgb(255,255,255);
+
+// Other Colours
+$darkish_grey: rgb(155,155,155);
+$light_blue: rgb(108,181,252);
+$green: rgb(155,202,99);
+$red: rgb(189,84,91);
+
+$background-colour: $light_grey;
+$box-colour: $white;
+$success: $green;
+$danger: $red;
+$box-border-colour: darken($light_grey, 5%) 1px solid;
+$sidebar-colour: $navy_blue;
+$accent-colour: $gold;
+$text-colour: $dark_grey;
+$base-font-size: 1em;
+
+
+// Configuring Susy Defaults
+$susy: (
+  global-box-sizing: border-box,
+  use-custom: (rem: true),
+  columns: 12,
+  gutters: 0
+);
+
+.last { @include last; }
+.first { @include first; }
+
+@mixin uppercaseLabel($color) {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.03rem;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  color: $color;
+}
+
+@mixin standardBox {
+  background-color: $box-colour;
+  border: darken($light_grey, 5%) 1px solid;
+}

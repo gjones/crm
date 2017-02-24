@@ -1,0 +1,70 @@
+.contact-profile {
+  margin-top: 1rem;
+  clear: both;
+  @include span(12 of 12);
+  @include standardBox;
+  .inner-box {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    @include pad(1/4 of 12);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: darken($dark_grey, 25%);
+    .label {
+      color: $gold;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding-bottom: 0.35rem;
+    }
+    &.image {
+      @include span(2 of 12);
+      @include pad(1/4 of 12);
+      color: darken($light_grey, 5%);
+      font-size: 2.25rem;
+      text-align: center;
+      border-right: $box-border-colour;
+    }
+    &.name {
+      border-right: $box-border-colour;
+      @include pad(1/4 of 12);
+      @include span(5 of 12);
+    }
+    &.phone {
+      @include span(5 of 12);
+    }
+    &.email {
+      border-top: $box-border-colour;
+      @include span(10 of 12);
+    }
+  }
+}
+
+.map-holder {
+  @include span(12 of 12);
+  #map {
+    @include span(12 of 12);
+    height: 10rem;
+    border: 0.15rem solid $gold;
+    margin-top: 2em;
+  }
+}
+
+.notes {
+  @include span(12 of 12);
+  @include pad(1/4 of 12);
+  @include standardBox;
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: darken($dark_grey, 25%);
+  .note {
+    @include span(12 of 12);
+    padding: 0.5rem 0;
+    border-bottom: 0.1rem $light_grey solid;
+    .note-author {
+      color: $darkish_grey;
+      float: right;
+      padding-bottom: 0.5rem;
+    }
+  }
+}

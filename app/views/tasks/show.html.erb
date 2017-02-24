@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @task.title %>
+</p>
+
+<p>
+  <strong>Detail:</strong>
+  <%= @task.detail %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @task.author %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @task.contact_id %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @task.completed %>
+</p>
+
+<%= link_to 'Edit', edit_contact_task_path(@task.contact_id, @task.id) %> |
+<%= link_to 'Back', all_tasks_path %>

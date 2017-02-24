@@ -1,0 +1,140 @@
+= content_for(:title) do
+  = @contact.name
+= content_for(:description) do
+  = @contact.name
+
+.row
+  .breadcrumbs
+    = link_to 'Contacts', contacts_path
+    \> #{@contact.name}
+
+  .dropdown.last
+    %button
+      Options
+      = fa_icon 'caret-down'
+    .dropdown-menu
+      = link_to new_contact_note_path(@contact.id) do
+        = fa_icon 'plus'
+        Add Note
+      = link_to new_contact_task_path(@contact.id) do
+        = fa_icon 'plus'
+        Add Task
+      = link_to 'Edit Contact', edit_contact_path(@contact)
+
+.row
+  .contact-profile
+    .inner-box.image
+      = fa_icon 'user'
+    .inner-box.name
+      .label
+        full name
+      = @contact.name
+    .inner-box.phone
+      .label
+        phone
+      = @contact.primary_phone
+    .inner-box.email
+      .label
+        email
+      = @contact.email
+
+.row
+  #tabs.tabs.no-js
+    .tabs-nav
+      %a.tabs.is-active{:href => "#"}
+        Personal Information
+      %a.tabs{:href => "#"}
+        Employment Details
+    .tab.is-active
+      .tab__content
+        .contact-profile
+          .left-box-area
+            .inner-box.birthday
+              .label
+                Birthday
+              = @contact.full_age
+            .inner-box.background-information
+              .label
+                background information
+              = @contact.bio
+          .right-box-area
+            .inner-box.address
+              .label
+                home address
+              = @contact.address
+              - if @contact.latitude.present?
+                .map-holder
+                  #map
+    .tab
+      .tab__content
+        .contact-profile
+          .left-box-area
+            .inner-box.birthday
+              .label
+                Job Title
+              = @contact.job_title
+            .inner-box.background-information
+              .label
+                work information
+              = @contact.bio
+          .right-box-area
+            .inner-box.address
+              .label
+                work address
+              = @contact.company
+              = @contact.work_address
+
+- if @notes.present?
+  .row
+    .notes
+      %h3
+        Notes (#{@notes.count})
+      - @notes.each do |note|
+        .note
+          .note-content
+            = note.body
+          .note-author
+            = "#{note.author_and_time}"
+
+- if @tasks.present?
+  .row
+    .notes
+      %h3
+        Tasks (#{@tasks.count})
+      - @tasks.each do |task|
+        .task
+          .note-content
+            = form_for contact_task_path(@contact.id), :id => 'update_task' do |f|
+              = f.check_box :completed, :onclick => "$('#update_task').submit()"
+            = task.title
+          .task-deadline
+            Deadline:
+            = task.deadline
+          .note-author
+
+:javascript
+  $(document).ready(function() {
+    var myTabs = tabs({
+      el: '#tabs',
+      tabNavigationLinks: '.tabs',
+      tabContentContainers: '.tab'
+    });
+    myTabs.init();
+    $('update_task').submit()
+  });
+
+- if @contact.latitude.present?
+  :javascript
+    $(document).ready(function() {
+      handler = Gmaps.build('Google');
+        handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+          markers = handler.addMarkers(#{@hash.to_json});
+          handler.bounds.extendWith(markers);
+          handler.fitMapToBounds();
+          handler.getMap().setZoom(12);
+        });
+      });
+- else
+  :javascript
+    console.log("No Address Defined")
+
