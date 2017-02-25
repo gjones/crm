@@ -1,11 +1,12 @@
 a {
   text-decoration:none;
+  color: $gold;
 }
 
 .breadcrumbs {
   @include span(4 of 12 first);
   @include uppercaseLabel(lighten($darkish_grey, 10%));
-  font-size: 0.875em;
+  font-size: 1em;
   a {
     color: $gold;
   }

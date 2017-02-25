@@ -9,3 +9,8 @@ h2 {
 h3 {
   @include uppercaseLabel($gold);
 }
+
+.box-label {
+  @include uppercaseLabel($gold);
+  padding-bottom: 0.35rem;
+}

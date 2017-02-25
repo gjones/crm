@@ -7,8 +7,7 @@
     padding-top: 1em;
     padding-bottom: 1em;
     @include pad(1/4 of 12);
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 1rem;
     color: darken($dark_grey, 25%);
     .label {
       color: $gold;
@@ -20,7 +19,7 @@
       @include span(2 of 12);
       @include pad(1/4 of 12);
       color: darken($light_grey, 5%);
-      font-size: 2.25rem;
+      font-size: 3.25rem;
       text-align: center;
       border-right: $box-border-colour;
     }
@@ -49,13 +48,11 @@
   }
 }
 
-.notes {
+.notes, .tasks {
   @include span(12 of 12);
-  @include pad(1/4 of 12);
   @include standardBox;
+  padding: 0 1em;
   margin-top: 2rem;
-  font-size: 0.75rem;
-  font-weight: 600;
   color: darken($dark_grey, 25%);
   .note {
     @include span(12 of 12);
@@ -65,6 +62,27 @@
       color: $darkish_grey;
       float: right;
       padding-bottom: 0.5rem;
+    }
+  }
+  .task {
+    input {
+      float: left;
+      margin: 0.2em 0.5em 0 0;
+    }
+    .task-title {
+      @include span(8 of 12);
+    }
+    .task-deadline, .task-author {
+      @include span(4 of 12 last);
+      text-align: right;
+    }
+    .task-comments {
+      @include span(8 of 12);
+      display: block;
+      margin: 0.5em 0 0 1em;
+      border-left: 0.2em solid $gold;
+      padding-left: 0.5em;
+      color: $darkish_grey;
     }
   }
 }

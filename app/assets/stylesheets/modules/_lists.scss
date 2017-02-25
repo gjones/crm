@@ -9,8 +9,8 @@
     font-family: 'Ubuntu', sans-serif;
     letter-spacing: 0.03rem;
     text-transform: uppercase;
-    font-size: 0.875rem;
-    height: 2.2rem;
+    font-size: 1.25rem;
+    height: 3rem;
     i {
       padding-right: 0.5rem;
     }
@@ -46,15 +46,8 @@
     padding-top: 1em;
     padding-bottom: 1.5em;
     @include pad(1/4 of 12);
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 1rem;
     color: darken($dark_grey, 25%);
-    .label {
-      color: $gold;
-      text-transform: uppercase;
-      font-weight: 500;
-      padding-bottom: 0.35rem;
-    }
     &.image {
       @include span(1 of 12);
       color: darken($light_grey, 5%);

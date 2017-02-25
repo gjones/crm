@@ -18,21 +18,25 @@
           .inner-box.image
             = fa_icon 'user'
           .inner-box.name
-            .label
+            .box-label
               full name
-            = contact.name
+            .box-value
+              = contact.name
           .inner-box.location
-            .label
+            .box-label
               location
-            = contact.location
+            .box-value
+              = contact.location
           .inner-box.phone
-            .label
+            .box-label
               phone
-            = contact.primary_phone
+            .box-value
+              = contact.primary_phone
           .inner-box.email
-            .label
+            .box-label
               email
-            = contact.email
+            .box-value
+              = contact.email
           -# %td= link_to 'Show', contact
           -# %td= link_to 'Edit', edit_contact_path(contact)
           -# %td= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' }
