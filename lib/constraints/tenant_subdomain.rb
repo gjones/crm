@@ -1,0 +1,7 @@
+module Constraints
+  class TenantSubdomain
+    def self.matches?(request)
+      request.subdomain.present? && request.subdomain != "www"
+    end
+  end
+end

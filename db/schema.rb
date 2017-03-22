@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222014639) do
+ActiveRecord::Schema.define(version: 20170322001617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170222014639) do
     t.string   "work_address_country"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.integer  "tenant_id"
     t.index ["slug"], name: "index_contacts_on_slug", unique: true, using: :btree
   end
 
@@ -72,6 +73,15 @@ ActiveRecord::Schema.define(version: 20170222014639) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.string   "searchable_type"
+    t.integer  "searchable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
     t.text     "detail"
@@ -81,6 +91,24 @@ ActiveRecord::Schema.define(version: 20170222014639) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "start_date"
+  end
+
+  create_table "tenants", force: :cascade do |t|
+    t.string   "name"
+    t.string   "subdomain"
+    t.string   "address_street"
+    t.string   "address_street2"
+    t.string   "address_city"
+    t.string   "address_state"
+    t.string   "address_postcode"
+    t.string   "address_country"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "facebook"
+    t.string   "contact_phone"
+    t.string   "contact_email"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,6 +124,7 @@ ActiveRecord::Schema.define(version: 20170222014639) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "tenant_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

@@ -4,6 +4,7 @@ class CreateTasks < ActiveRecord::Migration[5.0]
       t.string :title
       t.text :detail
       t.string :author
+      t.datetime :start_date
       t.integer :contact_id
       t.boolean :completed
 

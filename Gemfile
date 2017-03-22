@@ -21,7 +21,8 @@ gem 'devise'
 gem 'devise_invitable'
 gem 'geocoder'
 gem 'gmaps4rails'
-gem "simple_calendar", "~> 2.0"
+gem 'simple_calendar', '~> 2.0'
+gem 'pg_search'
 
 group :development, :test do
   gem 'byebug'

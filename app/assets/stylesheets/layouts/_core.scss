@@ -11,6 +11,7 @@ body, html {
 .container {
   @include container;
   display: flex;
+  box-orient: horizontal;
 }
 
 .row {
@@ -19,6 +20,7 @@ body, html {
 
 sidebar {
   background: $sidebar-colour;
+  box-flex:  0;
   @include span(2 of 12);
   align-items: stretch;
   @include breakpoint(phone) {
@@ -32,6 +34,7 @@ sidebar {
 
 .main-area {
   @include span(10 of 12);
+  box-flex: 1;
   min-height: 45em;
   background: $background-colour;
   .content {

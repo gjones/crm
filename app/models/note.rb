@@ -1,4 +1,5 @@
 class Note < ApplicationRecord
+  belongs_to :tenant
   belongs_to :contact
 
   def note_made_at

@@ -1,8 +1,11 @@
 class Contact < ApplicationRecord
+  belongs_to :tenant
   has_many :notes
   has_many :tasks
   accepts_nested_attributes_for :tasks
 
+  include PgSearch
+  multisearchable :against => [:firstname, :surname]
   extend FriendlyId
 
   def name
