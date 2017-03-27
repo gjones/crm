@@ -2,8 +2,15 @@
   .sidebar-content
     .logo
       = fa_icon 'cloud'
-      -# = current_tenant.name
+      - if signed_in?
+        = current_user.email
+        - if current_user.role == "admin"
+          \Admin
     %ul.page-navigation
+      %li.navigation-item
+        = link_to tenants_path do
+          = fa_icon "home"
+          Tenants
       %li.navigation-item
         = fa_icon "home"
         Dashboard

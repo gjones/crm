@@ -31,7 +31,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       # t.datetime :locked_at
 
       ## Custom
-      t.integer :tenant_id
+      t.string :subdomain
+      t.integer :role
 
       t.timestamps null: false
     end

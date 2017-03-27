@@ -3,18 +3,15 @@ class Tenant < ApplicationRecord
   has_many :contacts
   has_many :notes
   has_many :tasks
+  after_create :create_tenant
 
-  EXCLUDED_SUBDOMAINS = %w(admin www administrator admins owner)
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
-  validates_exclusion_of :subdomain, in: EXCLUDED_SUBDOMAINS,
-  message: "is not allowed. Please choose another subdomain"
+  private
 
-  validates_format_of :subdomain, with: /\A[\w\-]+\Z/i, allow_blank: true,
-  message: "is not allowed. Please choose another subdomain."
-
-  validates :subdomain, presence: true, uniqueness: true
-
-  before_validation do
-    self.subdomain = subdomain.to_s.downcase
+  def create_tenant
+    Apartment::Tenant.create(subdomain)
   end
+
 end

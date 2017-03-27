@@ -15,7 +15,7 @@
     = f.text_field :surname
   .field
     = f.label :birthday
-    = f.date_select :birthday
+    = f.date_select :birthday, start_year: 1945
   .field
     = f.label :job_title
     = f.text_field :job_title
@@ -58,6 +58,5 @@
   .field
     = f.label :linkedin
     = f.text_field :linkedin
-    = f.hidden_field :tenant_id =>
   .actions
     = f.submit
