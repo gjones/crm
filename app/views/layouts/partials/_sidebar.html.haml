@@ -1,30 +1,31 @@
-%sidebar
+%sidebar.three
   .sidebar-content
-    .logo
-      = fa_icon 'cloud'
-      - if signed_in?
-        = current_user.email
-        - if current_user.role == "admin"
-          \Admin
-    %ul.page-navigation
-      %li.navigation-item
-        = link_to tenants_path do
-          = fa_icon "home"
-          Tenants
-      %li.navigation-item
-        = fa_icon "home"
-        Dashboard
-      %li.navigation-item
-        = link_to contacts_path do
-          = fa_icon "users"
-          //= image_tag('icon-users@2x.png');
-          Contacts #{Contact.all.count}
-      %li.navigation-item
-        = link_to all_tasks_path do
-          = fa_icon "check-square-o"
-          Tasks
-      %li.navigation-item
-        = link_to all_notes_path do
-          = fa_icon "list"
-          Notes
+    .company
+      .logo
+        = fa_icon 'cloud'
+      .details
+        - if signed_in?
+          - if current_user.company.present?
+            .company-name
+              = current_user.company.name
+          - if current_user.name.present?
+            .user-name
+              = current_user.name
+          - else
+            = current_user.email
+          - if current_user.role == "admin"
+            \Admin
+    .navigation
+      %h2.area-title
+        Areas
+      %ul.page-navigation
+        %li.navigation-item
+          = link_to contacts_path do
+            Contacts #{Contact.all.count}
+        %li.navigation-item
+          = link_to all_tasks_path do
+            Tasks
+        %li.navigation-item
+          = link_to all_notes_path do
+            Notes
 

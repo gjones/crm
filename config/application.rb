@@ -31,14 +31,18 @@ module Crm
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.middleware.use 'Apartment::Elevators::Subdomain'
-    config.active_record.raise_in_transactional_callbacks = true
 
-      config.to_prepare do
-        Devise::SessionsController.layout "sessions"
-        Devise::RegistrationsController.layout "sessions"
-        DeviseController.respond_to :html, :json
-      end
+    config.generators do |generate|
+      generate.orm :active_record, primary_key_type: :uuid
+    end
+
+    # config.active_record.raise_in_transactional_callbacks = true
+
+    config.to_prepare do
+      Devise::SessionsController.layout "sessions"
+      Devise::RegistrationsController.layout "sessions"
+      DeviseController.respond_to :html, :json
+    end
 
   end
 end

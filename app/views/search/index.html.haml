@@ -12,27 +12,5 @@
 %ol.search-results
   - if @pg_search_documents.present?
     - @pg_search_documents.each do |pg_search_document|
-      = link_to pg_search_document.searchable do
-        .contact
-          .inner-box.image
-            = fa_icon 'user'
-          .inner-box.name
-            .box-label
-              full name
-            .box-value
-              = pg_search_document.searchable.name
-          .inner-box.location
-            .box-label
-              location
-            .box-value
-              = pg_search_document.searchable.location
-          .inner-box.phone
-            .box-label
-              phone
-            .box-value
-              = pg_search_document.searchable.primary_phone
-          .inner-box.email
-            .box-label
-              email
-            .box-value
-              = pg_search_document.searchable.email
+      = link_to pg_search_document do
+        = pg_search_document.name

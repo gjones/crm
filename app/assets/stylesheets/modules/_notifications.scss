@@ -12,10 +12,19 @@
   .close {
     float: right;
     padding-right: 0.2rem;
+    color: $white;
   }
 }
 
 .alert-notice {
   background: $success;
   color: darken($success, 25%);
+}
+
+.alert-alert {
+  background: $soft_red;
+  color: $white;
+  .close {
+    color: $white;
+  }
 }

@@ -1,15 +1,31 @@
-.logo {
-  color: $gold;
-  text-align: center;
-  padding: 1rem 0;
+.sessions-logo {
+  padding: 0;
+  width: 14em;
+  display: block;
+  margin: 0 auto;
 }
 
-.avatar {
+.contact-image {
+  float: left;
+  margin-right: 1em;
+  display: block;
   img {
-    width: 2rem;
-    height: 2rem;
+    width: 2.5em;
+    height: 2.5em;
     border-radius: 50%;
-    margin-top: 0.75em;
     float: left;
+    border: $divide;
+  }
+}
+
+.contact-details-image {
+  float: left;
+  margin: 0 1em 1em 0;
+  display: block;
+  img {
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    border: $divide;
   }
 }

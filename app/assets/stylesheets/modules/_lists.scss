@@ -1,80 +1,31 @@
 .page-navigation {
   list-style: none;
-  padding-left: 0;
-  width: 10rem;
-  margin: 3em auto 0rem;
-  display: block;
-  li.navigation-item {
-    color: $darkish-grey;
-    font-family: 'Ubuntu', sans-serif;
-    letter-spacing: 0.03rem;
-    text-transform: uppercase;
-    font-size: 1.25rem;
-    height: 3rem;
-    i {
-      padding-right: 0.5rem;
-    }
-    img {
-      width: 1.6rem;
-      height: 1.2rem;
-      padding-right: 0.5rem;
-    }
+  padding: 0;
+  margin: 0;
+  .navigation-item {
+    padding: 0.35em 0 0.35em 1em;
     &:hover {
-      color: $white;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    a {
-      &:hover, &:active, &:visited {
-        color: $white;
-        cursor: pointer;
-      }
+      background: rgba(255,255,255,0.2);
     }
   }
 }
 
-// Contact List
-.contact-list-link {
-  @include span(12 of 12);
-}
 
-.contact {
-  @include standardBox;
-  @include span(12 of 12);
-  margin-bottom: 1rem;
-  .inner-box {
-    padding-top: 1em;
-    padding-bottom: 1.5em;
-    @include pad(1/4 of 12);
-    font-size: 1rem;
-    color: darken($dark_grey, 25%);
-    &.image {
-      @include span(1 of 12);
-      color: darken($light_grey, 5%);
-      text-align: center;
-      border-right: $box-border-colour;
-      i {
-        font-size: 2.4rem;
-      }
+.contact-list {
+  border-right: $divide;
+  .contact {
+    padding: 1em;
+    border-bottom: $divide;
+    &:hover {
+      background-color: $off-white;
+      transition: 0.3s ease-in-out background-color;
     }
-    &.name {
-      @include span(2.5 of 12);
-      border-right: $box-border-colour;
+    .contact-name {
+      color: $charcoal;
     }
-    &.location {
-      @include span(3.5 of 12);
-      border-right: $box-border-colour;
+    .contact-job {
+      color: $grey;
+      font-size: 0.875em;
     }
-    &.phone {
-      @include span(2 of 12);
-      border-right: $box-border-colour;
-    }
-    &.email {
-      @include span(3 of 12);
-    }
-  }
-  &:hover {
-    border-color: lighten($gold, 25%);
-    transition: border-color 0.3s ease-in-out;
   }
 }

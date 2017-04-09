@@ -24,7 +24,7 @@
 .row
   .contact-profile
     .inner-box.image
-      = fa_icon 'user'
+      = image_tag(@contact.image.url) if @contact.image?
     .inner-box.name
       .box-label
         full name

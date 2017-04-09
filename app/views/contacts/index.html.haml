@@ -3,43 +3,54 @@
 = content_for(:description) do
   List of Contacts
 
-.row
-  .breadcrumbs
-    Contacts
+%h1.floated-title
+  Contacts
+= button_to 'New Contact', new_contact_path, :method => 'get', :class => 'floated-button'
+.filters
+  .alphabetical
+    A - Z
+    = fa_icon 'exchange'
+  .name-order
+    Surname, First Name
+    = fa_icon 'exchange'
 
-.row
-  - @contacts = @alphabetical_contacts
-  - @contacts.each do |letter, contact_array|
-    %h2
-      = letter
-    - contact_array.each do |contact|
-      = link_to contact_path(contact), :class => 'contact-list-link' do
-        .contact
-          .inner-box.image
-            = fa_icon 'user'
-          .inner-box.name
-            .box-label
-              full name
-            .box-value
-              = contact.name
-          .inner-box.location
-            .box-label
-              location
-            .box-value
-              = contact.location
-          .inner-box.phone
-            .box-label
-              phone
-            .box-value
-              = contact.primary_phone
-          .inner-box.email
-            .box-label
-              email
-            .box-value
-              = contact.email
-          -# %td= link_to 'Show', contact
-          -# %td= link_to 'Edit', edit_contact_path(contact)
-          -# %td= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' }
-          -# %td= link_to "#{contact.notes.count}", contact_notes_path(contact.id)
-  %br/
-  //= link_to 'New Contact', new_contact_path
+.contact-list.five
+  - @contacts.each do |contact|
+    - switch_contact = contact
+    %div.contact-list-link
+      .contact
+        .contact-image
+          = image_tag(contact.image.url(:thumb)) if contact.image?
+        .contact-name
+          = contact.name
+        .contact-job
+          = contact.job_title
+
+.contact-details.seven
+  .contact-details-image
+    = image_tag(@contact_detail.image.url(:standard)) if @contact_detail.image?
+  .contact-block
+    .contact-name
+      = @contact_detail.name
+    .contact-job
+      = @contact_detail.job_title
+  = button_to 'View Profile', edit_contact_path(@contact_detail), :method => 'get', :class => 'float-left'
+  .contact-info
+    %h2.sub-title Contact Info
+    .muted-text
+      = @contact_detail.email
+    .muted-text
+      = @contact_detail.primary_phone
+    %br
+    .muted-text
+      = @contact_detail.address_line1
+    .muted-text
+      = @contact_detail.address_line2
+    .muted-text
+      = @contact_detail.address_line3
+
+    %h2.sub-title Personal Info
+
+    .muted-text
+      Birthday:
+      = @contact_detail.full_age

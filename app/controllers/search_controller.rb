@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 
   def index
-    @pg_search_documents = PgSearch.multisearch(params[:query])
+    @pg_search_documents = Contact.search_by_full_name(params[:query])
   end
 
 end

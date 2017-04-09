@@ -1,6 +1,6 @@
 class CreateContacts < ActiveRecord::Migration[5.0]
   def change
-    create_table :contacts do |t|
+    create_table :contacts, id: :uuid do |t|
       t.string :firstname
       t.string :surname
       t.date :birthday
@@ -37,6 +37,7 @@ class CreateContacts < ActiveRecord::Migration[5.0]
     end
 
     add_index :contacts, :slug, unique: true
+    add_reference :contacts, :company, foreign_key: true, type: :uuid
   end
 
 end

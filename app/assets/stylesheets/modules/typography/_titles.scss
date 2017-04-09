@@ -1,16 +1,21 @@
-h2 {
-  font-size: 2rem;
-  color: $gold;
-  opacity: 0.4;
+.session-title, .area-title {
+  font-size: 16px;
+  color: $grey;
+  text-align: center;
+  font-weight: 400;
+}
+
+.area-title {
+  text-align: left;
+  margin-bottom: 0.5em;
+  padding-left: 1em;
+}
+
+.floated-title {
   float: left;
-  margin: 0.5rem 0;
 }
 
-h3 {
-  @include uppercaseLabel($gold);
-}
-
-.box-label {
-  @include uppercaseLabel($gold);
-  padding-bottom: 0.35rem;
+.sub-title {
+  clear: both;
+  font-size: 1em;
 }

@@ -1,0 +1,9 @@
+%h1
+  All Companies
+
+.row
+  - @companies.each do |company|
+    = company.name
+
+.row
+  = link_to 'New Company', new_company_path

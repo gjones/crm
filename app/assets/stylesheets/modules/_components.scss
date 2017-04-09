@@ -1,0 +1,13 @@
+.contact-details {
+  @include pad(0.5, 0.5);
+  padding-top: 2em;
+}
+
+.contact-block {
+  float: left;
+}
+
+.contact-info {
+  padding-bottom: 1em;
+  border-bottom: $divide;
+}

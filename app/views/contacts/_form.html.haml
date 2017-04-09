@@ -1,4 +1,4 @@
-= form_for(contact) do |f|
+= form_for contact, html: { multipart: true } do |f|
   - if contact.errors.any?
     #error_explanation
       %h2
@@ -15,7 +15,7 @@
     = f.text_field :surname
   .field
     = f.label :birthday
-    = f.date_select :birthday, start_year: 1945
+    = f.date_select :birthday, start_year: 1945, :class => 'four'
   .field
     = f.label :job_title
     = f.text_field :job_title
@@ -31,6 +31,9 @@
   .field
     = f.label :bio
     = f.text_area :bio
+  .field
+    = f.label :image
+    = f.file_field :image
   .field
     = f.label :address_street
     = f.text_field :address_street
@@ -58,5 +61,6 @@
   .field
     = f.label :linkedin
     = f.text_field :linkedin
+    = f.hidden_field :company_id, :value => current_user.company_id
   .actions
     = f.submit

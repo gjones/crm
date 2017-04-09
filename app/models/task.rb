@@ -1,5 +1,4 @@
 class Task < ApplicationRecord
-  belongs_to :tenant
   belongs_to :contact
 
   def deadline

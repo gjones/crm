@@ -19,11 +19,13 @@ gem "font-awesome-rails"
 gem 'puma'
 gem 'devise'
 gem 'devise_invitable'
+gem 'pundit'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'simple_calendar', '~> 2.0'
 gem 'pg_search'
-gem 'apartment', '~> 1.2'
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'byebug'
@@ -39,9 +41,12 @@ group :development do
   gem 'web-console', '~> 3.0'
   gem 'meta_request'
   gem 'better_errors'
+  gem 'rb-fsevent'
+  gem 'guard-livereload'
 end
 
 group :test do
   gem 'capybara'
+  gem 'faker'
 end
 

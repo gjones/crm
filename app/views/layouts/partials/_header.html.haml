@@ -1,11 +1,7 @@
-%header
-  = form_tag search_index_path, method: :get, :class => 'header-form' do
-    = text_field_tag :query, params[:query], :placeholder => 'Type to Search...'
-  .user-navigation
-    .profile
-      .avatar
-        = image_tag 'avatar.png'
-        = fa_icon 'caret-down'
-    .notification
-      = fa_icon 'bell'
-      = link_to 'Sign Out', destroy_user_session_path, :method => :delete
+%header.twelve
+
+  = form_tag search_index_path, method: :get, :class => 'header-form eight' do
+    = text_field_tag :query, params[:query], :placeholder => 'Type to Search...', :class => 'search-field'
+  .settings-menu.four
+    = link_to "Preferences", preferences_path(current_user), :class => 'settings-menu-link'
+    = link_to 'Sign Out', destroy_user_session_path, :method => :delete, :class => 'settings-menu-link', :data => {:confirm => "Are you sure you wish to sign out?"}

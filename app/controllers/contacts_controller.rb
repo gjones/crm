@@ -2,16 +2,13 @@ class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  # GET /contacts
-  # GET /contacts.json
   def index
-    @contacts = Contact.all
-    @alphabetical_contacts = Contact.order("surname ASC").group_by{|u| u.surname[0]}
-    @alphabetical_contacts_first = Contact.order("firstname ASC").group_by{|u| u.firstname[0]}
+    @contacts = ApplicationPolicy::Scope.new(current_user, Contact).resolve.alphabetical
+    @contact_detail = Contact.alphabetical.first
+    @alphabetical_contacts = ApplicationPolicy::Scope.new(current_user, Contact).resolve.order("surname ASC").group_by{|u| u.surname[0]}
+    #@alphabetical_contacts_first = ApplicationPolicy::Scope.new(current_user, Contact).resolve.order("firstname ASC").group_by{|u| u.firstname[0]}
   end
 
-  # GET /contacts/1
-  # GET /contacts/1.json
   def show
     @notes = @contact.notes.reverse
     @tasks = @contact.tasks.reverse
@@ -22,17 +19,13 @@ class ContactsController < ApplicationController
 
   end
 
-  # GET /contacts/new
   def new
     @contact = Contact.new
   end
 
-  # GET /contacts/1/edit
   def edit
   end
 
-  # POST /contacts
-  # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
 
@@ -47,8 +40,6 @@ class ContactsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /contacts/1
-  # PATCH/PUT /contacts/1.json
   def update
     respond_to do |format|
       if @contact.update(contact_params)
@@ -61,8 +52,6 @@ class ContactsController < ApplicationController
     end
   end
 
-  # DELETE /contacts/1
-  # DELETE /contacts/1.json
   def destroy
     @contact.destroy
     respond_to do |format|
@@ -79,6 +68,6 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:firstname, :surname, :birthday, :job_title, :website, :primary_phone, :email, :bio, :address_street, :address_street2, :address_city, :address_state, :address_postcode, :address_country, :latitude, :longitude, :referred_by, :twitter, :linkedin)
+      params.require(:contact).permit(:firstname, :surname, :birthday, :job_title, :website, :primary_phone, :email, :bio, :address_street, :address_street2, :address_city, :address_state, :address_postcode, :address_country, :latitude, :longitude, :referred_by, :twitter, :linkedin, :company_id, :image)
     end
 end

@@ -1,0 +1,7 @@
+contact_a:
+  company: company_a
+  surname: This contact belongs to Company A
+
+contact_b:
+  company: company_b
+  surname: This contact belongs to Company B

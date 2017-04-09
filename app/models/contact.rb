@@ -1,12 +1,19 @@
 class Contact < ApplicationRecord
-  belongs_to :tenant
+  belongs_to :company
   has_many :notes
   has_many :tasks
   accepts_nested_attributes_for :tasks
-
+  mount_uploader :image, ImageUploader
   include PgSearch
-  multisearchable :against => [:firstname, :surname]
+  #multisearchable :against => [:firstname, :surname]
+  pg_search_scope :search_by_full_name, :against => [:firstname, :surname]
   extend FriendlyId
+
+  validates_presence_of :firstname
+  validates_presence_of :surname
+  scope :alphabetical, -> {
+   order('surname asc')
+  }
 
   def name
     "#{self.firstname} #{self.surname}"
@@ -22,6 +29,21 @@ class Contact < ApplicationRecord
 
   def address
     @address_array = [self.address_street, self.address_street2, self.address_city, self.address_state, self.address_country, self.address_postcode]
+    @address_array.reject(&:blank?).join(", ")
+  end
+
+  def address_line1
+    @address_array = [self.address_street, self.address_street2]
+    @address_array.reject(&:blank?).join(", ")
+  end
+
+  def address_line2
+    @address_array = [self.address_city, self.address_state]
+    @address_array.reject(&:blank?).join(", ")
+  end
+
+  def address_line3
+    @address_array = [self.address_postcode, self.address_country]
     @address_array.reject(&:blank?).join(", ")
   end
 

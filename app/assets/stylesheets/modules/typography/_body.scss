@@ -1,3 +1,13 @@
-.box-value {
-  @include base-font;
+.contact-name {
+  color: $charcoal;
+}
+.contact-job {
+  color: $grey;
+  font-size: 0.875em;
+}
+
+.muted-text {
+  font-size: 0.875em;
+  color: $grey;
+  padding-bottom: 0.2em;
 }
