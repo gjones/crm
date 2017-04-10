@@ -1,0 +1,27 @@
+.contact-details-image
+  = image_tag(@contact_detail.image.url(:standard)) if @contact_detail.image?
+.contact-block
+  .contact-name
+    = @contact_detail.name
+  .contact-job
+    = @contact_detail.job_title
+= button_to 'View Profile', contact_path(@contact_detail), :method => 'get', :class => 'float-left'
+.contact-info
+  %h2.sub-title Contact Info
+  .muted-text
+    = @contact_detail.email
+  .muted-text
+    = @contact_detail.primary_phone
+  %br
+  .muted-text
+    = @contact_detail.address_line1
+  .muted-text
+    = @contact_detail.address_line2
+  .muted-text
+    = @contact_detail.address_line3
+
+  %h2.sub-title Personal Info
+
+  .muted-text
+    Birthday:
+    = @contact_detail.full_age

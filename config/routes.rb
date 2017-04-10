@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :contacts do
     resources :notes
     resources :tasks
+    collection do
+      get :update_variable
+    end
   end
 
   resources :users
