@@ -5,15 +5,13 @@ class Contact < ApplicationRecord
   accepts_nested_attributes_for :tasks
   mount_uploader :image, ImageUploader
   include PgSearch
-  #multisearchable :against => [:firstname, :surname]
   pg_search_scope :search_by_full_name, :against => [:firstname, :surname]
   extend FriendlyId
 
   validates_presence_of :firstname
   validates_presence_of :surname
-  scope :alphabetical, -> {
-   order('surname asc')
-  }
+  scope :alphabetical, -> (surname) { order('surname asc') }
+  scope :nonalphabetical, -> (surname) { order('surname desc') }
 
   def name
     "#{self.firstname} #{self.surname}"

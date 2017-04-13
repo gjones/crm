@@ -4,9 +4,6 @@ class ContactsController < ApplicationController
 
   def index
     @contacts = ApplicationPolicy::Scope.new(current_user, Contact).resolve.alphabetical
-    @contact_detail = Contact.alphabetical.first
-    @alphabetical_contacts = ApplicationPolicy::Scope.new(current_user, Contact).resolve.order("surname ASC").group_by{|u| u.surname[0]}
-    #@alphabetical_contacts_first = ApplicationPolicy::Scope.new(current_user, Contact).resolve.order("firstname ASC").group_by{|u| u.firstname[0]}
   end
 
   def show
@@ -60,10 +57,10 @@ class ContactsController < ApplicationController
     end
   end
 
-  def update_variable(contact)
-    @contact_detail = contact
-
+  def update_variable
+    @contact_detail = Contact.find(params[:contact_id])
     respond_to do |format|
+      format.html
       format.js
     end
   end

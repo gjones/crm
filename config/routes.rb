@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   resources :contacts do
     resources :notes
     resources :tasks
-    collection do
-      get :update_variable
-    end
+    get :update_variable
   end
 
   resources :users
@@ -28,5 +26,6 @@ Rails.application.routes.draw do
   get '/all-notes/' => 'notes#allNotes', :as => :all_notes
 
   get 'users/:id/preferences' => 'users#preferences', :as => :preferences
+  #get "contacts/update_variable" => "contacts#update_variable"
 
 end

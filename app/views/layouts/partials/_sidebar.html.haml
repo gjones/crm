@@ -13,15 +13,15 @@
               = current_user.name
           - else
             = current_user.email
-          - if current_user.role == "admin"
-            \Admin
+          -# - if current_user.role == "admin"
+          -#   \Admin
     .navigation
       %h2.area-title
         Areas
       %ul.page-navigation
         %li.navigation-item
           = link_to contacts_path do
-            Contacts #{Contact.all.count}
+            Contacts #{ApplicationPolicy::Scope.new(current_user, Contact).resolve.count}
         %li.navigation-item
           = link_to all_tasks_path do
             Tasks

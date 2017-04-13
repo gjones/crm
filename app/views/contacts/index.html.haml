@@ -8,23 +8,25 @@
 = button_to 'New Contact', new_contact_path, :method => 'get', :class => 'floated-button'
 .filters
   .alphabetical
-    A - Z
-    = fa_icon 'exchange'
+    = link_to do
+      A - Z
+      = fa_icon 'exchange'
+
   .name-order
     Surname, First Name
     = fa_icon 'exchange'
 
 .contact-list.five
   - @contacts.each do |contact|
-    = button_to "this", update_variable_contacts_path(:contact => contact), :remote => true, :method => 'get'
-    %div.contact-list-link
-      .contact
-        .contact-image
-          = image_tag(contact.image.url(:thumb)) if contact.image?
-        .contact-name
-          = contact.name
-        .contact-job
-          = contact.job_title
+    = link_to contact_update_variable_path(:contact_id => contact.id), :remote => true, :method => 'get' do
+      %div.contact-list-link
+        .contact
+          .contact-image
+            = image_tag(contact.image.url(:thumb)) if contact.image?
+          .contact-name
+            = contact.name
+          .contact-job
+            = contact.job_title
 
 .contact-details.seven
-  = render 'contact_details', locals: {contact: @contact_detail}
+  #profile

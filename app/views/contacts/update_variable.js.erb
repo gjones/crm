@@ -1,0 +1,3 @@
+//$('#profile').replaceWith("#{escape_javascript(render partial: 'contacts/contact_details', locals: { contact: @contact_detail })}");
+
+$('#profile').html('<%=j render partial: "/contacts/contact_details", locals: { @contact => @contact_detail } %> ');
