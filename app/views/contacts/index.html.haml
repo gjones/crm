@@ -25,7 +25,11 @@
         %div.contact-list-link
           .contact
             .contact-image
-              = image_tag(contact.image.url(:thumb)) if contact.image?
+              - if contact.image?
+                = image_tag(contact.image.url(:thumb))
+              - else
+                .initials.small
+                  = contact.initials
             .contact-name
               = contact.name
             .contact-job

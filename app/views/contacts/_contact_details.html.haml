@@ -1,5 +1,9 @@
 .contact-details-image
-  = image_tag(@contact_detail.image.url(:standard)) if @contact_detail.image?
+  - if @contact_detail.image?
+    = image_tag(@contact_detail.image.url(:standard))
+  - else
+    .initials.standard
+      = @contact_detail.initials
 .contact-block
   .contact-name
     = @contact_detail.name

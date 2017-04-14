@@ -13,7 +13,11 @@
     .top-section.twelve
       .left-side.four
         .contact-show-image
-          = image_tag(@contact.image.url(:standard)) if @contact.image?
+          - if @contact.image?
+            = image_tag(@contact.image.url(:standard))
+          - else
+            .initials.large
+              = @contact.initials
         .contact-show-block
           .contact-name
             = @contact.name

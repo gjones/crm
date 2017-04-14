@@ -18,6 +18,11 @@ class Contact < ApplicationRecord
     "#{self.firstname} #{self.surname}"
   end
 
+  def initials
+    name_to_split = self.name
+    name_to_split.split.map(&:first).join
+  end
+
   def age(birthday)
     (Time.now.to_s(:number).to_i - birthday.to_time.to_s(:number).to_i)/10e9.to_i
   end

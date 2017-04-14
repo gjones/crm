@@ -10,8 +10,8 @@
   margin-right: 1em;
   display: block;
   img {
-    width: 2.5em;
-    height: 2.5em;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     float: left;
     border: $divide;
@@ -20,11 +20,12 @@
 
 .contact-details-image {
   float: left;
-  margin: 0 1em 1em 0;
   display: block;
+  height: 5.5em;
+  width: 5.5em;
   img {
-    width: 4em;
-    height: 4em;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: $divide;
   }
@@ -35,8 +36,8 @@
   margin: 0 2em 1em 0;
   display: block;
   img {
-    width: 6em;
-    height: 6em;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     float: left;
     border: $divide;
@@ -51,4 +52,32 @@
       display: block;
     }
   }
+}
+
+.initials {
+  background: rgb(240,240,240);
+  border-radius: 50%;
+  border: $divide;
+  color: $grey;
+  text-align: center;
+  letter-spacing: 0.1em;
+
+  &.small {
+    height: 40px;
+    width: 40px;
+    line-height: 2.7;
+  }
+  &.standard {
+    width: 60px;
+    height: 60px;
+    font-size: 1.4em;
+    line-height: 3;
+  }
+  &.large {
+    width: 100px;
+    height: 100px;
+    font-size: 2em;
+    line-height: 3.5;
+  }
+
 }
