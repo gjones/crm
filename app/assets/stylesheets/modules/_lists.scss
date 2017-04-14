@@ -3,13 +3,15 @@
   padding: 0;
   margin: 0;
   .navigation-item {
-    padding: 0.35em 0 0.35em 1em;
-    &:hover {
-      background: rgba(255,255,255,0.2);
+    a {
+      padding: 0.5em 0 0.5em 1em;
+      display: block;
+      &:hover {
+        background: rgba(255,255,255,0.1);
+      }
     }
   }
 }
-
 
 .contact-list {
   border-right: $divide;

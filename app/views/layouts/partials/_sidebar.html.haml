@@ -1,7 +1,7 @@
 %sidebar.three
   .sidebar-content
     .company
-      .logo
+      .logo.four
         - if current_user.company.present?
           - if current_user.company.logo?
             = image_tag(current_user.company.logo.url(:thumb))
@@ -9,7 +9,7 @@
             = image_tag 'Logo.png', :title => "#{current_user.company.name}"
         - else
           = image_tag 'Logo.png', :title => "Logo"
-      .details
+      .details.eight
         - if signed_in?
           - if current_user.company.present?
             .company-name
