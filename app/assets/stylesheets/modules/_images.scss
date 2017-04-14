@@ -29,3 +29,26 @@
     border: $divide;
   }
 }
+
+.contact-show-image {
+  float: left;
+  margin: 0 2em 1em 0;
+  display: block;
+  img {
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+    float: left;
+    border: $divide;
+  }
+}
+
+.sidebar-content {
+  .logo {
+    img {
+      width: 55%;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+}

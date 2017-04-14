@@ -8,147 +8,52 @@
     = link_to 'Contacts', contacts_path
     \> #{@contact.name}
 
-  .dropdown.last
-    %button
-      Options
-      = fa_icon 'caret-down'
-    .dropdown-menu
-      = link_to new_contact_note_path(@contact.id) do
-        = fa_icon 'plus'
-        Add Note
-      = link_to new_contact_task_path(@contact.id) do
-        = fa_icon 'plus'
-        Add Task
-      = link_to 'Edit Contact', edit_contact_path(@contact)
-
 .row
-  .contact-profile
-    .inner-box.image
-      = image_tag(@contact.image.url) if @contact.image?
-    .inner-box.name
-      .box-label
-        full name
-      .box-value
-        = @contact.name
-    .inner-box.phone
-      .box-label
-        phone
-      .box-value
-        = @contact.primary_phone
-    .inner-box.email
-      .box-label
-        email
-      .box-value
-        = @contact.email
+  .show-contact.twelve
+    .top-section.twelve
+      .left-side.four
+        .contact-show-image
+          = image_tag(@contact.image.url(:standard)) if @contact.image?
+        .contact-show-block
+          .contact-name
+            = @contact.name
+          .contact-show-job
+            = @contact.job_title
+      .right-side.four
+        = button_to 'Edit Profile', edit_contact_path(@contact), :method => 'get'
 
-.row
-  #tabs.tabs.no-js
-    .tabs-nav
-      %a.tabs.is-active{:href => "#"}
-        Personal Information
-      %a.tabs{:href => "#"}
-        Employment Details
-    .tab.is-active
-      .tab__content
-        .contact-profile
-          .left-box-area
-            .inner-box.birthday
-              .box-label
-                Birthday
-              .box-value
-                = @contact.full_age
-            .inner-box.background-information
-              .box-label
-                background information
-              .box-value
-                = @contact.bio
-          .right-box-area
-            .inner-box.address
-              .box-label
-                home address
-              .box-value
-                = @contact.address
-              - if @contact.latitude.present?
-                .map-holder
-                  #map
-    .tab
-      .tab__content
-        .contact-profile
-          .left-box-area
-            .inner-box.birthday
-              .box-label
-                Job Title
-              .box-value
-                = @contact.job_title
-            .inner-box.background-information
-              .box-label
-                work information
-              .box-value
-                = @contact.bio
-          .right-box-area
-            .inner-box.address
-              .box-label
-                work address
-              .box-value
-                = @contact.company
-                = @contact.work_address
-
-- if @notes.present?
-  .row
-    .notes
-      %h3
-        Notes (#{@notes.count})
-      - @notes.each do |note|
-        .note
-          .box-value
-            = note.body
-          .note-author
-            = "#{note.author_and_time}"
-
-- if @tasks.present?
-  .row
-    .notes
-      %h3
-        Tasks (#{@tasks.count})
-      - @tasks.each do |task|
-        .task
-          .row
-            .task-title
-              = form_for contact_task_path(@contact.id), :id => 'update_task' do |f|
-                = f.check_box :completed, :onclick => "$('#update_task').submit()"
-              = task.title
-            .task-deadline
-              Deadline:
-              = task.deadline
-          .row
-            .task-comments
-              = task.detail
-            .task-author
-              = task.author
-
-:javascript
-  $(document).ready(function() {
-    var myTabs = tabs({
-      el: '#tabs',
-      tabNavigationLinks: '.tabs',
-      tabContentContainers: '.tab'
-    });
-    myTabs.init();
-    $('update_task').submit()
-  });
-
-- if @contact.latitude.present?
-  :javascript
-    $(document).ready(function() {
-      handler = Gmaps.build('Google');
-        handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-          markers = handler.addMarkers(#{@hash.to_json});
-          handler.bounds.extendWith(markers);
-          handler.fitMapToBounds();
-          handler.getMap().setZoom(12);
-        });
-      });
-- else
-  :javascript
-    console.log("No Address Defined")
-
+      .contact-show-info.twelve
+        .contact-info.four
+          %h2.sub-title
+            Contact Info
+          .muted-text
+            = @contact.email
+          .muted-text
+            = @contact.primary_phone
+          %br
+          .muted-text
+            = @contact.address_line1
+          .muted-text
+            = @contact.address_line2
+          .muted-text
+            = @contact.address_line3
+        .personal-info.four
+          %h2.sub-title
+            Personal Info
+          .muted-text
+            = @contact.full_age
+          %br
+          .muted-text
+            = @contact.bio
+        - if (@contact.twitter.present?) || (@contact.linkedin.present?)
+          .social-info.four
+            %h2.sub-title
+              Social Info
+            - if @contact.twitter.present?
+              .muted-text
+                Twitter:
+                = link_to "#{@contact.twitter}", "http://twitter.com/#{@contact.twitter}", :target => "_blank"
+            - if @contact.linkedin.present?
+              .muted-text
+                LinkedIn:
+                = link_to "#{@contact.linkedin}", "https://www.linkedin.com/in/#{@contact.linkedin}", :target => "_blank"

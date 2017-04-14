@@ -10,6 +10,7 @@ class Contact < ApplicationRecord
 
   validates_presence_of :firstname
   validates_presence_of :surname
+  validates_presence_of :company_id
   scope :alphabetical, -> (surname) { order('surname asc') }
   scope :nonalphabetical, -> (surname) { order('surname desc') }
 

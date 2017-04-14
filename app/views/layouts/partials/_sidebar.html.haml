@@ -2,7 +2,13 @@
   .sidebar-content
     .company
       .logo
-        = fa_icon 'cloud'
+        - if current_user.company.present?
+          - if current_user.company.logo?
+            = image_tag(current_user.company.logo.url(:thumb))
+          - else
+            = image_tag 'Logo.png', :title => "#{current_user.company.name}"
+        - else
+          = image_tag 'Logo.png', :title => "Logo"
       .details
         - if signed_in?
           - if current_user.company.present?

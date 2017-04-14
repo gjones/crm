@@ -11,9 +11,6 @@ feature 'User views contacts' do
 
 end
 
-
-
-
 def sign_in_with(email, password)
   visit new_user_session_path
   fill_in "user_email", with: email

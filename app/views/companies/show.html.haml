@@ -2,3 +2,6 @@
   Show Company
 
 = @company.name
+= image_tag(@company.logo.url(:standard)) if @company.logo?
+%br
+= link_to "edit", edit_company_path(@company)

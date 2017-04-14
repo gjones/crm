@@ -4,4 +4,5 @@ class Company < ApplicationRecord
 
   extend FriendlyId
   friendly_id :name, use: :slugged
+  mount_uploader :logo, LogoUploader
 end

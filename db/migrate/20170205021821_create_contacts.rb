@@ -32,6 +32,7 @@ class CreateContacts < ActiveRecord::Migration[5.0]
       t.string :work_address_state
       t.string :work_address_postcode
       t.string :work_address_country
+      t.string :image
 
       t.timestamps
     end

@@ -17,5 +17,6 @@ FactoryGirl.define do
     referred_by "MyString"
     twitter "MyString"
     linkedin "MyString"
+    company "Company A"
   end
 end

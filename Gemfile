@@ -34,6 +34,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'rails-controller-testing'
+  gem 'capybara'
+  gem 'faker'
 end
 
 group :development do
@@ -45,8 +47,4 @@ group :development do
   gem 'guard-livereload'
 end
 
-group :test do
-  gem 'capybara'
-  gem 'faker'
-end
 
