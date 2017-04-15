@@ -59,7 +59,7 @@ class ContactsController < ApplicationController
 
   def update_variable
     @contact_detail = Contact.find(params[:contact_id])
-    respond_to do |format|
+      respond_to do |format|
       format.html
       format.js
     end

@@ -17,7 +17,7 @@ feature "User Creates Contact" do
     expect(page).to have_content contact.firstname
   end
 
-  scenario "without valid credentials" do
+  scenario "without valid firstname" do
     sign_in_with user.email, user.password
     visit new_contact_path
     fill_in 'Firstname', with: ""
@@ -27,6 +27,25 @@ feature "User Creates Contact" do
     expect(page).to have_content "Firstname can't be blank"
   end
 
+  scenario "without valid surname" do
+    sign_in_with user.email, user.password
+    visit new_contact_path
+    fill_in 'Firstname', with: contact.firstname
+    fill_in 'Surname', with: ""
+    fill_in 'contact_company_id', with: contact.company.id
+    click_button 'Create Contact'
+    expect(page).to have_content "Surname can't be blank"
+  end
+
+  scenario "upload new image" do
+    sign_in_with user.email, user.password
+    visit new_contact_path
+    fill_in 'Firstname', with: contact.firstname
+    fill_in 'Surname', with: contact.surname
+    attach_file('contact_image', File.join(Rails.root, '/spec/images/contacts/logo_image.jpg'))
+    click_button 'Create Contact'
+    expect(page).to have_content 'Contact was successfully created.'
+  end
 end
 
 def sign_in_with(email, password)

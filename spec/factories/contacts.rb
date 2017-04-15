@@ -18,5 +18,6 @@ FactoryGirl.define do
     twitter "MyString"
     linkedin "MyString"
     company "Company A"
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'images', 'contacts', 'logo_image.jpg'), 'image/jpg') }
   end
 end

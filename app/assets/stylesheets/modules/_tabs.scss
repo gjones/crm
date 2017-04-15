@@ -1,0 +1,48 @@
+.tabs {
+  float: none;
+  clear: both;
+  list-style: none;
+  position: relative;
+  padding-left: 0;
+  li {
+    float: left;
+    display: block;
+  }
+  input.hidden-radio {
+    position: absolute;
+    top: 0;
+    left: -9999em;
+  }
+  label.tab-label {
+    display: block;
+    float: left;
+    font-size: 1em;
+    font-weight: normal;
+    cursor: pointer;
+    position: relative;
+    color: $grey;
+    text-transform: capitalize;
+    padding-right: 2em;
+    transition: all 0.2s ease-in-out;
+  }
+  .tab-content{
+    z-index: 2;
+    display: none;
+    overflow: hidden;
+    padding-top: 2em;
+    position: absolute;
+    top: 2em;
+    left: 0;
+    border-top: $divide;
+    transition: all 0.2s ease-in-out;
+  }
+  //The Magic
+  [id^="tab"]:checked + label {
+    top: 0;
+    color: $charcoal;
+  }
+  [id^="tab"]:checked ~ [id^="tab-content"] {
+    display: block;
+    transition: display 0.3s ease-in-out;
+  }
+}

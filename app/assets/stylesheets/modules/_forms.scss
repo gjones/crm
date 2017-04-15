@@ -78,3 +78,28 @@ select {
     font-size: 0.75em;
   }
 }
+
+// Radio Buttons
+
+.theme-choice {
+  padding-bottom: 2em;
+  .radio {
+    img {
+      float: left;
+      padding-right: 0.5em;
+      width: 6em;
+    }
+    .block {
+      margin-top: 2em;
+      input[type='radio'] {
+        float: left;
+        margin-top: 0.25em;
+      }
+      .text-label {
+        float: left;
+        padding-left: 0.5em;
+        text-transform: capitalize;
+      }
+    }
+  }
+}

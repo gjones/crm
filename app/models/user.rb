@@ -27,4 +27,12 @@ class User < ApplicationRecord
     "#{self.firstname} #{self.surname}"
   end
 
+  def member_since
+    created_at.try(:strftime, "%B %e, %Y")
+  end
+
+  def last_sign_in
+    last_sign_in_at.try(:strftime, "%B %e, %Y")
+  end
+
 end

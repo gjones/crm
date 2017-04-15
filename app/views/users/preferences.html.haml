@@ -1,21 +1,85 @@
-%h1
+= content_for(:title) do
+  Preferences
+= content_for(:description) do
+  Preferences Page
+
+%h1.floated-title
   Preferences
 
-= form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@user.errors.count, "error")
-        prohibited this user from being saved:
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
+%ul{class: 'tabs twelve', role: 'tablist'}
+  %li
+    %input{type: 'radio', class: 'hidden-radio', name: 'tabs', id: 'tab1', checked: true}
+    %label{for: 'tab1', class: 'tab-label', role: 'tab', tabindex: '0'}
+      General
+    .tab-content.twelve#tab-content1{role: 'tabpanel'}
+      = form_for @user do |f|
+        - if @user.errors.any?
+          #error_explanation
+            %h2
+              = pluralize(@user.errors.count, "error")
+              prohibited this user from being saved:
+            %ul
+              - @user.errors.full_messages.each do |msg|
+                %li= msg
 
-  .field
-    %label
-      = f.label :theme
-      = f.select :theme, [:dark, :light, :white]
-      %br/
-      %br/
-      = f.submit "Update Theme"
+        .theme-choice.twelve
+          = f.label :theme
+          .radio.four
+            = f.label :theme, value: :dark do
+              = image_tag("themes/theme_dark@2x.png")
+            .block
+              = f.radio_button(:theme, :dark)
+              = f.label :theme, "Dark", value: :dark, :class => 'text-label'
 
+          .radio.four
+            = f.label :theme, value: :light do
+              = image_tag("themes/theme_light@2x.png")
+            .block
+              = f.radio_button(:theme, :light)
+              = f.label :theme, "Light", value: :light, :class => 'text-label'
+
+          .radio.four
+            = f.label :theme, value: :white do
+              = image_tag("themes/theme_white@2x.png")
+            .block
+              = f.radio_button(:theme, :white)
+              = f.label :theme, "White", value: :white, :class => 'text-label'
+
+        = f.submit "Update Preferences"
+
+  %li
+    %input{type: 'radio', class: 'hidden-radio', name: 'tabs', id: 'tab2'}
+    %label{for: 'tab2', class: 'tab-label', role: 'tab', tabindex: '0'}
+      Profile
+    .tab-content.twelve#tab-content2{role: 'tabpanel'}
+      = form_for @user do |f|
+        - if @user.errors.any?
+          #error_explanation
+            %h2
+              = pluralize(@user.errors.count, "error")
+              prohibited this user from being saved:
+            %ul
+              - @user.errors.full_messages.each do |msg|
+                %li= msg
+
+        .field
+          = f.label :firstname
+          = f.text_field :firstname
+        .field
+          = f.label :surname
+          = f.text_field :surname
+        .field
+          = f.label :email
+          = f.text_field :email
+        .field
+          = f.label :role
+          = f.select :role, [:user, :admin]
+        .field
+          = f.label :title
+          = f.text_field :title
+        .field
+          = f.submit "Update User"
+      .user-info
+        = "Joined on: #{@user.member_since}"
+        %br
+        = "Last seen: #{@user.last_sign_in}"
