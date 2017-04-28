@@ -1,3 +1,5 @@
 CRM Project
 
 This is a Customer Relationship Manager built using Ruby on Rails. This project is currently under active development with an aim for release at the end of 2017. 
+
+![Alt text](https://www.dropbox.com/sh/pwcchpp940omk8k/AAD_j5qvp2UVuHHxcJsjVFkpa?dl=0#f:CRM-Sign-In.png "Sign In Screen")
